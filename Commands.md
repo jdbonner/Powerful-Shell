@@ -1,79 +1,171 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Powershell Commands
+## System & Process Management
+```
+Get-Process – Lists running processes.
+Stop-Process -Name [ProcessName] – Stops a process by name.
+Start-Process [Program] – Starts a new process.
+Restart-Computer – Restarts the computer.
+```
+## File & Directory Management
+```
+Get-ChildItem – Lists files and directories.
+Remove-Item [Path] – Deletes a file or folder.
+New-Item -ItemType File -Name [FileName] – Creates a new file.
+New-Item -ItemType Directory -Name [FolderName] – Creates a new directory.
+```
+## User & Security Management
+```
+Get-LocalUser – Lists local user accounts.
+Get-LocalGroupMember Administrators – Lists administrator group members.
+Set-ExecutionPolicy Restricted – Prevents PowerShell scripts from running.
+```
+## Networking & Internet
+```
+Test-Connection [IP/Host] – Pings a host.
+Get-NetIPConfiguration – Displays network settings.
+Resolve-DnsName [Domain] – Resolves a domain to an IP address.
+```
+## Registry Management
+```
+Get-ItemProperty -Path [RegistryPath] – Reads a registry value.
+Set-ItemProperty -Path [RegistryPath] -Name [Key] -Value [Value] – Sets a registry value.
+```
+## System Information
+```
+Get-ComputerInfo – Displays system details.
+Get-CimInstance Win32_OperatingSystem – Shows OS details.
+Get-Disk – Lists storage devices.
+```
+## Windows Service Management
+```
+Get-Service – Lists services.
+Stop-Service -Name [ServiceName] – Stops a service.
+Start-Service -Name [ServiceName] – Starts a service.
+```
+## PowerShell Help & Commands
+```
+Get-Command – Lists all available PowerShell commands.
+Get-Help [Command] – Displays help for a command.
+Get-Alias – Lists command aliases.
+```
+
+
+# Script blank
+```
+# ============================================
+# PowerShell Script Outline
+# ============================================
+# Description: [Brief description of what the script does]
+# ============================================
+# Parameters (Define any input parameters)
+# ============================================
+param (
+    [string]$ExampleParam = "DefaultValue"
+)
+
+# ============================================
+# Import Modules (Load required modules)
+# ============================================
+Import-Module SomeModule
+
+# ============================================
+# Functions (Define reusable functions)
+# ============================================
+function ExampleFunction {
+    param ([string]$InputValue)
+    Write-Output "Processing: $InputValue"
+}
+
+# ============================================
+# Main Execution (Main logic of the script)
+# ============================================
+Write-Output "Starting script execution..."
+ExampleFunction -InputValue $ExampleParam
+
+# ============================================
+# Cleanup (Final operations before exiting)
+# ============================================
+Write-Output "Script execution completed."
+
+# ============================================
+# End of Script
+# ============================================
+```
+## Parameter example
+```
+# ============================================
+# PowerShell Script Example with Parameters
+# ============================================
+param (
+    [string]$UserName,  # Accepts a username as a string
+    [int]$Age,          # Accepts an age as an integer
+    [bool]$IsAdmin      # Accepts a boolean (true/false) for admin status
+)
+
+# Output the received parameters
+Write-Output "User Name: $UserName"
+Write-Output "Age: $Age"
+Write-Output "Is Administrator: $IsAdmin"
+
+# Example usage in PowerShell:
+# .\script.ps1 -UserName "Alice" -Age 30 -IsAdmin $true
+```
+
+
+## Useful Modules to load
+### System Management
+```
+Microsoft.PowerShell.Management – Includes core cmdlets for system operations like file handling and services.
+Microsoft.PowerShell.Security – Helps with security-related tasks such as access control and encryption.
+Microsoft.PowerShell.Utility – Provides useful general-purpose utilities.
+```
+### Networking & Internet
+```
+NetAdapter – Manages network adapters and configurations.
+DnsClient – Allows DNS query operations.
+CimCmdlets – Provides access to WMI and remote management.
+NetTCPIP – Handles TCP/IP configurations.
+```
+### Active Directory & User Management
+```
+ActiveDirectory – Enables management of users, groups, and objects in Active Directory.
+PSReadLine – Enhances command-line editing and input customization.
+LocalAccounts – Manages local user accounts.
+```
+### Security & Encryption
+```
+Defender – Manages Windows Defender for security operations.
+BitLocker – Handles BitLocker encryption settings.
+PKI – Provides cmdlets for managing certificates.
+```
+### Web & APIs
+```
+PowerShellGet – Manages PowerShell modules and scripts from online repositories.
+WebAdministration – Works with IIS (Internet Information Services) configurations.
+PSWebAPI – Interacts with web APIs.
+```
+### Logging & Automation
+```
+EventLog – Reads and manages event logs.
+ScheduledTasks – Automates scheduled tasks management.
+Logging – Provides logging functions for scripts.
+```
+
+
+
+# Possibly Useful
 ## Extra Notes
 
 ### Random
+```
 (get-host).version – Retrieves the PowerShell version from the host.
 $host.version – Displays the version of the PowerShell host.
 $psversiontable.psversion – Retrieves the PowerShell version using the PSVersionTable.
 pwsh.exe – Launches PowerShell Core after it's installed.
 powershell.exe – Launches the built-in Windows PowerShell version.
-
+```
 ### Logic
+```
 get-command – Lists all PowerShell cmdlets.
 get-verb – Lists all available PowerShell verbs.
 get-member – Lists all properties and methods of a PowerShell object.
@@ -99,16 +191,18 @@ sort-object -descending | select-object -index 21 – Gets the 21st line from a 
 (get-content words.txt | where-object { $_ -match '(az)'}).count – Counts lines that contain "a" or "z".
 for($i=1000;$i -gt 0; $i--){expand-archive -path ".\omega${i}.zip";mv "omega${i}\omega$($i-1).zip"} – Unzips a file 1,000 times.
 (get-content words.txt | where-object { $_ -match '((aa)[a-g])}).count – Counts words where "aa" is followed by "a-g".
-
+```
 
 ### Profiles
+```
 $HOME – Stores the current user’s home directory.
 $PsHome – Stores the installation directory for PowerShell.
 $Profile – Stores the path to the "Current User, Current Host" profile.
 get-help about_profiles – Displays help information about PowerShell profiles.
 test-path -path $PROFILE.AllUsersAllHosts – Checks if a profile is loaded for "All Users, All Hosts."
-
+```
 ### Registry
+```
 HKLM\HARDWARE – The Windows registry path for the Volatile Hive.
 HKEY_LOCAL_MACHINE\SOFTWARE – Registry key that creates Wow6432Node, representing 32-bit applications running on a 64-bit version of Windows.
 HKLM\SYSTEM\CurrentControlSet\Services – Registry path where BOOT_START drivers are located.
@@ -119,9 +213,10 @@ HKLM\SYSTEM\CurrentControlSet\Services – Registry location read during kernel 
 HKLM, HKU – The only two accessible HKEYs when accessing a remote registry.
 get-psdrive – PowerShell cmdlet to list currently mapped drives.
 regedit – Native Windows GUI tool for managing the registry.
-
+```
 
 ### Registry extra
+```
 HKLM – Registry hive containing all machine settings.
 HKU – Registry hive containing all user settings.
 HKCU – Registry hive containing only the currently logged-in user’s settings.
@@ -137,25 +232,28 @@ reg query hkcu\software\microsoft\windows\currentversion\run – Queries the reg
 reg query HKLM:\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\RUNONCE – Queries startup programs that execute once from HKEY_LOCAL_MACHINE.
 reg query hkcu\software\microsoft\windows\currentversion\runonce – Queries startup programs that execute once from HKEY_CURRENT_USER.
 reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR – Retrieves USB storage device information.
-
+```
 ### NTFS
+```
 $DATA – Stores an alternate data stream.
 $LOGGED_UTILITY_STREAM – Holds information about a file's encrypted attributes.
 $SECURITY_DESCRIPTOR – Contains the file security and access control properties.
 $STANDARD_INFORMATION – Stores the file times of an object.
 0x80 – Type ID in hex of the attribute that stores an NTFS file’s contents.
 fsutil fsinfo drives – Lists only the letters of attached drives.
-
+```
 ### File system
+```
 d – Represents the directory attribute for files.
 h – Represents the hidden attribute for files.
 get-childitem -force – Lists all files in the current directory, including hidden and system files.
 get-filehash -algorithm sha512 – Computes and returns the SHA-512 hash of a specified file.
 get-acl – Retrieves the permissions assigned to a file.
 hosts – The Windows file that maps hostnames to IP addresses.
-
+```
 
 ### Boot Process
+```
 diskpart – CLI tool for managing partitions and volumes.
 winload.exe – Starts BOOT_START device drivers with a registry value of 0x0.
 NTOSKRNL.exe – Starts SYSTEM_START device drivers with a registry value of 0x1.
@@ -170,9 +268,10 @@ services.exe – Parent process of all svchost.exe instances.
 LSASS – Creates access tokens for authentication.
 Kerberos – Default authentication protocol for Active Directory.
 KDC – Key Distribution Center, providing authentication services.
-
+```
 
 ### Process
+```
 IIS – Internet Information Server, associated with inetinfo.exe.
 server – Host running dns.exe is likely a server.
 client – Host running Firefox and Office 365 is likely a client machine.
@@ -190,23 +289,26 @@ C:\users\public\downloads – Default Windows download directory accessible to e
 LoadOrder – Sysinternals tool showing service load order.
 MpsSvc – Service name for Windows Defender Firewall.
 ListDLLs – Sysinternals tool that reports DLLs loaded into processes.
-
+```
 
 ### User account control
+```
 Sigcheck – Sysinternals tool for viewing a file's manifest.
 asInvoker – RequestedExecutionLevel that runs an application with the same permissions as the process that started it.
 requireAdministrator – RequestedExecutionLevel that prompts the user for Administrator credentials if they are not in the Administrator group.
 HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System – Registry key that holds UAC values.
-
+```
 ### Windows Services 
+```
 sc query – Displays service information using the command line.
 sc queryex type=service state=all – Lists all services, whether running or not.
 Get-Service – PowerShell command that retrieves and displays all services.
 HKLM\System\CurrentControlSet\Services – Registry location that holds all service data.
 Parameters – Registry subkey containing a service's .dll location.
-
+```
 
 ### Auditing, logging, and forensic related
+```
 Monitoring – Real-time analysis of security events, often performed using a SIEM system.
 Auditing – Reviewing log files or records over a specified period.
 %systemroot%\System32\WinEvt\Logs\System.evtx – Path to the Windows System Log.
@@ -229,30 +331,32 @@ C:\Windows\Temp\bad_intentions.exe – Path of an abnormal program execution.
 DARK_FORCES-8F2869FC.pf – Name of a questionable prefetch file.
 2/23/2022 – Creation date of the suspicious prefetch file.
 $RZDAQ4U.txt,DontTrashMeyo – Filename and recovered contents from the Recycle Bin.
-
+```
 
 ### Networking and Name Resolution
+```
 NDIS – Implements Windows networking stack for OSI layers.
 netstat -r – Displays the local computer's routing table.
 dns – Hierarchical protocol that translates hostnames to IP addresses.
 nslookup – CLI tool for troubleshooting DNS issues and reconnaissance.
 nbtstat – Displays NetBIOS transport statistics.
 System32\drivers\etc\hosts – Full path to the Windows hosts file.
-
+```
 ### Security and Access Control
-- SID – Unique identifier for users, groups, and computers.
-- whoami /all – Displays the SID of the current user.
-- 1000 – RID assigned to the first user account.
-- 500 – Well-known RID for the Windows Built-In Administrator account.
-- Get-CimInstance Win32_UserAccount | Select-Object Name,SID – Lists all user SIDs by Name and SID.
-- Get-Acl – Retrieves the security descriptor of a file or resource.
-- net localgroup – Enumerates local Windows group accounts.
-- iCACLS – Displays or modifies ACLs for files and folders.
-- DEP – Memory protection feature preventing execution in certain memory pages.
-- ASLR – Prevents exploitation by randomizing memory address space positions.
-- Credential Guard – Protects against Pass-the-Hash and Pass-the-Ticket attacks.
-- Windows Defender – Microsoft’s built-in antivirus solution.
-
+```
+SID – Unique identifier for users, groups, and computers.
+whoami /all – Displays the SID of the current user.
+1000 – RID assigned to the first user account.
+500 – Well-known RID for the Windows Built-In Administrator account.
+Get-CimInstance Win32_UserAccount | Select-Object Name,SID – Lists all user SIDs by Name and SID.
+Get-Acl – Retrieves the security descriptor of a file or resource.
+net localgroup – Enumerates local Windows group accounts.
+iCACLS – Displays or modifies ACLs for files and folders.
+DEP – Memory protection feature preventing execution in certain memory pages.
+ASLR – Prevents exploitation by randomizing memory address space positions.
+Credential Guard – Protects against Pass-the-Hash and Pass-the-Ticket attacks.
+Windows Defender – Microsoft’s built-in antivirus solution.
+```
 
 ### Auditing and Logging
 ```
