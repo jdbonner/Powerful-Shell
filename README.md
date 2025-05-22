@@ -1,0 +1,2 @@
+# Powerful-Shell
+powershell scripting
